@@ -17,14 +17,13 @@ install_aocc() {
   fi
 
   local download_url="http://developer.amd.com/wordpress/media/files/aocc-compiler-${version}.tar"
-  local file_name="aocc-compiler-${version}.tar.gz"
+  local file_name="aocc-compiler-${version}.tar"
   local tmp_download_dir
   tmp_download_dir=$(mktemp -d -t aocc_tmp_XXXXXX)
-
   local source_path="${tmp_download_dir}/${file_name}"
 
   (
-    echo "∗ Downloading AOCC source..."
+    echo "∗ Downloading AOCC..."
     curl --silent --location --output "$source_path" -C - "$download_url" || fail "Could not download AOCC $version source"
     tar axf "$source_path" -C "$install_path" --strip-components=1
     echo "The installation was successful!"

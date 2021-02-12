@@ -26,6 +26,7 @@ install_aocc() {
     echo "∗ Downloading AOCC..."
     curl --silent --location --output "$source_path" -C - "$download_url" || fail "Could not download AOCC $version source"
     tar axf "$source_path" -C "$install_path" --strip-components=1
+    bash "${install_path}/AOCC-prerequisites-check.sh"
     echo "The installation was successful!"
   ) || (
     rm -rf "$install_path"

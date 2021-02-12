@@ -16,7 +16,7 @@ install_aocc() {
     fail "asdf-aocc supports release installs only"
   fi
 
-  local download_url="http://developer.amd.com/wordpress/media/files/aocc-compiler-${version}.tar"
+  local download_url="https://developer.amd.com/wordpress/media/files/aocc-compiler-${version}.tar"
   local file_name="aocc-compiler-${version}.tar"
   local tmp_download_dir
   tmp_download_dir=$(mktemp -d -t aocc_tmp_XXXXXX)

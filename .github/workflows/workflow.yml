@@ -1,0 +1,67 @@
+name: Main workflow
+
+on:
+  pull_request:
+  push:
+  schedule:
+    - cron: 0 0 * * 5
+
+jobs:
+  plugin_test:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: asdf_plugin_test
+        uses: asdf-vm/actions/plugin-test@v1
+        with:
+          command: clang --version
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install asdf
+        uses: asdf-vm/actions/setup@v1
+
+      - name: Install bats
+        run: brew install bats
+
+      - name: Add plugin
+        run: asdf plugin-add aocc $GITHUB_WORKSPACE
+
+      - name: Test plugin
+        run: make test
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install shellcheck
+        run: brew install shellcheck
+
+      - name: Run ShellCheck
+        run: make lint
+
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install shfmt
+        run: brew install shfmt
+
+      - name: Run shfmt
+        run: make fmt-check

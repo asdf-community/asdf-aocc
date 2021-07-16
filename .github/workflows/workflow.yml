@@ -31,8 +31,8 @@ jobs:
       - name: Install asdf
         uses: asdf-vm/actions/setup@v1
 
-      - name: Install bats
-        run: brew install bats
+      - name: Install bats-core
+        run: brew install bats-core
 
       - name: Add plugin
         run: asdf plugin-add aocc $GITHUB_WORKSPACE

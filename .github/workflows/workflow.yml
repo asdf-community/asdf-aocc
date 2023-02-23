@@ -41,7 +41,7 @@ jobs:
         run: make test
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code

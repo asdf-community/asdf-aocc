@@ -17,7 +17,7 @@ jobs:
           command: clang --version
 
   test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -25,6 +25,9 @@ jobs:
 
       - name: Install asdf
         uses: asdf-vm/actions/setup@v1
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
 
       - name: Install bats-core
         run: brew install bats-core
@@ -36,11 +39,14 @@ jobs:
         run: make test
 
   lint:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
 
       - name: Install shellcheck
         run: brew install shellcheck
@@ -49,11 +55,14 @@ jobs:
         run: make lint
 
   format:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
 
       - name: Install shfmt
         run: brew install shfmt

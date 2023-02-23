@@ -8,12 +8,7 @@ on:
 
 jobs:
   plugin_test:
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: asdf_plugin_test
@@ -22,7 +17,7 @@ jobs:
           command: clang --version
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code

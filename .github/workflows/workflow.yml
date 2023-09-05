@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: asdf_plugin_test
-        uses: asdf-vm/actions/plugin-test@v1
+        uses: asdf-vm/actions/plugin-test@v2
         with:
           command: clang --version
 
@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install asdf
-        uses: asdf-vm/actions/setup@v1
+        uses: asdf-vm/actions/setup@v2
 
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
